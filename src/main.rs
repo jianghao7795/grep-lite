@@ -37,16 +37,6 @@ fn main() {
     let re = Regex::new(pattern).unwrap();
 
     let input = args.value_of("input").unwrap();
-    // let f = File::open(input).unwrap();
-    // let reader = BufReader::new(f);
-
-    // for line in quote.lines() {
-    //     match re.find(line) {
-    //         Some(_) => println!("{}", line),
-    //         None => (),
-    //     }
-    // }
-
     if input == "-" {
         let stdin = io::stdin();
         let reader = stdin.lock();
@@ -56,4 +46,9 @@ fn main() {
         let reader = BufReader::new(f);
         process_lines(reader, re)
     }
+    
+    let mut a = String::new();
+    println!("{a}");
+    a = String::from("24234234");
+    println!("{a}");
 }
