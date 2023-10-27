@@ -67,6 +67,8 @@ fn main() {
     println!("{}", equal::equal_one::equal_one(4));
     println!("{}", add_five::add_five::add_five_then_equal_one(0));
 
+    println!("{}", add_five::add_five::add_six::add_six(55));
+
     let mut a = String::new();
     println!("{a}");
     a = String::from("24234234");

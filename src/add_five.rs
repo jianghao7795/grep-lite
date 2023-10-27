@@ -6,4 +6,12 @@ pub mod add_five {
     pub fn add_five_then_equal_one(base: u32) -> bool {
         crate::equal::equal_one::equal_one(add_five(base))
     }
+
+    pub mod add_six {
+        pub fn add_six(base: u32) -> u32 {
+            super::add_five(base) + 1
+        }
+    }
 }
+// super 本文件的最上层
+// crate 本项目的最上层
