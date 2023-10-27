@@ -15,9 +15,11 @@ fn process_lines<T: BufRead + Sized>(reader: T, re: Regex) {
     }
 }
 
+mod add_five;
 mod add_four; // 代表文件和文件夹
 mod add_three; // 代表文件夹 add_three
 mod add_two; // 代表文件 add_two.rs
+mod equal;
 
 mod add {
     pub mod add_noe {
@@ -62,6 +64,8 @@ fn main() {
     println!("{}", add_two::add_two::add_two(77));
     println!("{}", add_three::add_three::add_three(99));
     println!("{}", add_four::add_four::add_four(50));
+    println!("{}", equal::equal_one::equal_one(4));
+    println!("{}", add_five::add_five::add_five_then_equal_one(0));
 
     let mut a = String::new();
     println!("{a}");
