@@ -11,6 +11,10 @@ pub mod add_five {
         pub fn add_six(base: u32) -> u32 {
             super::add_five(base) + 1
         }
+
+        pub fn delete_one(base: u32) -> u32 {
+            self::add_six(base) - 1
+        }
     }
 }
 // super 本文件mod的最上层
