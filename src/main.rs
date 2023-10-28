@@ -1,4 +1,4 @@
-use clap::{App, Arg};
+// use clap::{App, Arg};
 use regex::Regex;
 use std::fs::File;
 use std::io;
@@ -30,17 +30,17 @@ mod add {
 }
 
 fn main() {
-    let args = App::new("grep-lite")
+    let args = clap::App::new("grep-lite")
         .version("0.1")
         .about("searches for patterns")
         .arg(
-            Arg::with_name("pattern")
+            clap::Arg::with_name("pattern")
                 .help("The pattern to search for")
                 .takes_value(true)
                 .required(true),
         )
         .arg(
-            Arg::with_name("input")
+            clap::Arg::with_name("input")
                 .help("File to search")
                 .takes_value(true)
                 .required(true),
