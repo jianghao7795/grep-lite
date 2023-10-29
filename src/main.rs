@@ -68,7 +68,7 @@ fn main() {
     println!("{}", add_five::add_five::add_five_then_equal_one(0));
 
     println!("{}", add_five::add_five::add_six::add_six(55));
-    println!("{}", add_five::add_five::add_six::delete_one(55));
+    println!("{}", add_five::add_five::add_six::delete_six(55));
 
     let mut a = String::new();
     println!("{a}");

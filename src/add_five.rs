@@ -12,8 +12,8 @@ pub mod add_five {
             super::add_five(base) + 1
         }
 
-        pub fn delete_one(base: u32) -> u32 {
-            self::add_six(base) - 1
+        pub fn delete_six(base: u32) -> u32 {
+            self::add_six(base) - 6
         }
     }
 }
