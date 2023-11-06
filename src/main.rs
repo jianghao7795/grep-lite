@@ -1,3 +1,5 @@
+use data_encoding::HEXUPPER;
+use grep_lite::sha256_digest;
 use grep_lite::sheet;
 // use clap::{App, Arg};
 use regex::Regex;
@@ -55,7 +57,7 @@ impl ops::Sub<Foo> for Bar {
     }
 }
 
-fn main() {
+fn main() -> Result<(), std::io::Error> {
     let args = clap::App::new("grep-lite")
         .version("0.1")
         .about("searches for patterns")
@@ -112,7 +114,36 @@ fn main() {
     assert_eq!(Foo + Bar, FooBar);
     assert_eq!(Bar - Foo, BarFoo);
 
-    println!("Success!")
+    println!("Success!");
+
+    // let path = "file.txt";
+    // let mut output = File::create(path)?;
+    // write!(output, "We will generate a digest of this text")?;
+
+    // let input = File::open(path)?;
+    // let reader = BufReader::new(input);
+    // let digest = sha256_digest(reader)?;
+
+    // println!("SHA-256 digest is {}", HEXUPPER.encode(digest.as_ref()));
+    // // sha256_digest(reader)
+    // Ok(())
+    let path = "file.txt";
+
+    let mut output = match File::create(path) {
+        Ok(file) => file,
+        Err(error) => {
+            panic!("Problem opening the file: {:?}", error)
+        }
+    };
+    write!(output, "We will generate a digest of this text")?;
+
+    let input = File::open(path)?;
+    let reader = BufReader::new(input);
+    let digest = sha256_digest(reader).unwrap();
+
+    println!("SHA-256 digest is {}", HEXUPPER.encode(digest.as_ref()));
+
+    Ok(())
 }
 
 struct Point<T> {
