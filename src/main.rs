@@ -4,6 +4,7 @@ use std::fs::File;
 use std::io;
 use std::io::prelude::*;
 use std::io::BufReader;
+use std::ops;
 
 fn process_lines<T: BufRead + Sized>(reader: T, re: Regex) {
     for line_ in reader.lines() {
@@ -26,6 +27,30 @@ mod add {
         pub fn add_one(base: u32) -> u32 {
             base + 1
         }
+    }
+}
+
+struct Foo;
+struct Bar;
+#[derive(PartialEq, Debug)]
+struct FooBar;
+#[derive(PartialEq, Debug)]
+struct BarFoo;
+
+// 下面的代码实现了自定义类型的相加： Foo + Bar = FooBar
+impl ops::Add<Bar> for Foo {
+    type Output = FooBar;
+
+    fn add(self, _rhs: Bar) -> FooBar {
+        FooBar
+    }
+}
+// 下面的代码实现了自定义类型的相减： Bar - Foo = BarFoo
+impl ops::Sub<Foo> for Bar {
+    type Output = BarFoo;
+
+    fn sub(self, _rhs: Foo) -> BarFoo {
+        BarFoo
     }
 }
 
@@ -74,4 +99,26 @@ fn main() {
     println!("{a}");
     a = String::from("24234234");
     println!("{a}");
+
+    let p = Point {
+        x: 5.0f32,
+        y: 10.0f32,
+    };
+    println!("{}", p.distance_from_origin());
+
+    assert_eq!(Foo + Bar, FooBar);
+    assert_eq!(Bar - Foo, BarFoo);
+
+    println!("Success!")
+}
+
+struct Point<T> {
+    x: T,
+    y: T,
+}
+
+impl Point<f32> {
+    fn distance_from_origin(&self) -> f32 {
+        (self.x.powi(2) + self.y.powi(2)).sqrt()
+    }
 }
