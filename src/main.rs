@@ -1,3 +1,4 @@
+use grep_lite::sheet;
 // use clap::{App, Arg};
 use regex::Regex;
 use std::fs::File;
@@ -94,6 +95,8 @@ fn main() {
 
     println!("{}", add_five::add_five::add_six::add_six(55));
     println!("{}", add_five::add_five::add_six::delete_six(55));
+
+    sheet();
 
     let mut a = String::new();
     println!("{a}");
