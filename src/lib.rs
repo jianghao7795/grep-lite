@@ -30,3 +30,35 @@ pub fn sha256_digest<R: Read>(mut reader: R) -> Result<Digest> {
 pub fn sheet() {
     println!("hello, world, {}", add_two::add_two::add_two(2));
 }
+
+pub fn get_app() -> clap::App<'static, 'static> {
+    clap::App::new("grep-lite")
+        .version("0.1")
+        .about("searches for patterns")
+        .arg(
+            clap::Arg::with_name("pattern")
+                .help("The pattern to search for")
+                .takes_value(true)
+                .required(true),
+        )
+        .arg(
+            clap::Arg::with_name("input")
+                .help("The input file to use")
+                .takes_value(true)
+                .required(true),
+        )
+}
+
+#[cfg(test)]
+pub mod tests {
+    use crate::get_app;
+    use clap::ErrorKind;
+
+    #[test]
+    pub fn test_no_args() {
+        let res = get_app().get_matches_from_safe(vec!["bbbbgrep4444lite1111"]);
+        assert!(res.is_err());
+        let err = res.err().unwrap();
+        assert_eq!(err.kind, ErrorKind::MissingRequiredArgument);
+    }
+}
