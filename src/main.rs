@@ -142,10 +142,20 @@ fn main() -> Result<(), std::io::Error> {
     let digest = sha256_digest(reader).unwrap();
 
     println!("SHA-256 digest is {}", HEXUPPER.encode(digest.as_ref()));
+    let ordinary_string = "ordinary string".to_string();
+    let host = Hostname(ordinary_string.clone(), 23);
+    connect(host);
 
     Ok(())
 }
 
+// 元组结构体(Tuple Struct)
+struct Hostname(String, i32);
+
+fn connect(host: Hostname) {
+    println!("Connecting to {}", host.0);
+    println!("Connecting to i32 {}", host.1);
+}
 struct Point<T> {
     x: T,
     y: T,
