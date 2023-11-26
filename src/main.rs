@@ -146,9 +146,28 @@ fn main() -> Result<(), std::io::Error> {
     let host = Hostname(ordinary_string.clone(), 23);
     connect(host);
 
+    let value = match returns_ok() {
+        Ok(value) => value,
+        Err(error) => panic!("Problem opening the file: {:?}", error),
+    };
+    println!("Got value: {:?}", value);
+    let value = returns_err();
+    println!("{:?}", value);
+
     Ok(())
 }
 
+// Result<T, E> 代表可能出错的操作
+fn returns_ok() -> Result<String, MyError> {
+    Ok("everything is fine".to_string())
+}
+
+fn returns_err() -> Result<String, MyError> {
+    Err(MyError("something went wrong".to_string()))
+}
+
+#[derive(Debug)]
+struct MyError(String);
 // 元组结构体(Tuple Struct)
 struct Hostname(String, i32);
 
