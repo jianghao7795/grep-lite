@@ -73,7 +73,7 @@ fn main() {
 
     sheet();
 
-    let mut a = String::new();
+    let mut a = String::from("test");
     println!("{a}");
     a = String::from("24234234");
     println!("{a}");
