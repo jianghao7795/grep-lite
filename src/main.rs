@@ -1,3 +1,5 @@
+use data_encoding::HEXUPPER;
+use grep_lite::sha256_digest;
 use grep_lite::sheet;
 // use clap::{App, Arg};
 use regex::Regex;
@@ -5,6 +7,7 @@ use std::fs::File;
 use std::io;
 use std::io::prelude::*;
 use std::io::BufReader;
+use std::ops;
 
 fn process_lines<T: BufRead + Sized>(reader: T, re: Regex) {
     for line_ in reader.lines() {
@@ -30,7 +33,31 @@ mod add {
     }
 }
 
-fn main() {
+struct Foo;
+struct Bar;
+#[derive(PartialEq, Debug)]
+struct FooBar;
+#[derive(PartialEq, Debug)]
+struct BarFoo;
+
+// 下面的代码实现了自定义类型的相加： Foo + Bar = FooBar
+impl ops::Add<Bar> for Foo {
+    type Output = FooBar;
+
+    fn add(self, _rhs: Bar) -> FooBar {
+        FooBar
+    }
+}
+// 下面的代码实现了自定义类型的相减： Bar - Foo = BarFoo
+impl ops::Sub<Foo> for Bar {
+    type Output = BarFoo;
+
+    fn sub(self, _rhs: Foo) -> BarFoo {
+        BarFoo
+    }
+}
+
+fn main() -> Result<(), std::io::Error> {
     let args = clap::App::new("grep-lite")
         .version("0.1")
         .about("searches for patterns")
@@ -77,4 +104,65 @@ fn main() {
     println!("{a}");
     a = String::from("24234234");
     println!("{a}");
+
+    let p = Point {
+        x: 5.0f32,
+        y: 10.0f32,
+    };
+    println!("{}", p.distance_from_origin());
+
+    assert_eq!(Foo + Bar, FooBar);
+    assert_eq!(Bar - Foo, BarFoo);
+
+    println!("Success!");
+
+    // let path = "file.txt";
+    // let mut output = File::create(path)?;
+    // write!(output, "We will generate a digest of this text")?;
+
+    // let input = File::open(path)?;
+    // let reader = BufReader::new(input);
+    // let digest = sha256_digest(reader)?;
+
+    // println!("SHA-256 digest is {}", HEXUPPER.encode(digest.as_ref()));
+    // // sha256_digest(reader)
+    // Ok(())
+    let path = "file.txt";
+
+    let mut output = match File::create(path) {
+        Ok(file) => file,
+        Err(error) => {
+            panic!("Problem opening the file: {:?}", error)
+        }
+    };
+    write!(output, "We will generate a digest of this text")?;
+
+    let input = File::open(path)?;
+    let reader = BufReader::new(input);
+    let digest = sha256_digest(reader).unwrap();
+
+    println!("SHA-256 digest is {}", HEXUPPER.encode(digest.as_ref()));
+    let ordinary_string = "ordinary string".to_string();
+    let host = Hostname(ordinary_string.clone(), 23);
+    connect(host);
+
+    Ok(())
+}
+
+// 元组结构体(Tuple Struct)
+struct Hostname(String, i32);
+
+fn connect(host: Hostname) {
+    println!("Connecting to {}", host.0);
+    println!("Connecting to i32 {}", host.1);
+}
+struct Point<T> {
+    x: T,
+    y: T,
+}
+
+impl Point<f32> {
+    fn distance_from_origin(&self) -> f32 {
+        (self.x.powi(2) + self.y.powi(2)).sqrt()
+    }
 }
