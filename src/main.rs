@@ -7,6 +7,7 @@ use std::fs::File;
 use std::io;
 use std::io::prelude::*;
 use std::io::BufReader;
+// use std::io::ErrorKind;
 use std::ops;
 
 fn process_lines<T: BufRead + Sized>(reader: T, re: Regex) {
@@ -146,25 +147,64 @@ fn main() -> Result<(), std::io::Error> {
     let host = Hostname(ordinary_string.clone(), 23);
     connect(host);
 
-    let value = match returns_ok() {
-        Ok(value) => value,
+    // let value = match returns_ok() {
+    //     Ok(value) => value,
+    //     Err(error) => panic!("Problem opening the file: {:?}", error),
+    // };
+    // println!("Got value: {:?}", value);
+    // let value = returns_err();
+    // println!("{:?}", value);
+    // Open file 对返回的错误进行处理
+    // let f = File::open("./hello.txt");
+
+    // let mut f = match f {
+    //     Ok(file) => file,
+    //     Err(ref error) => match error.kind() {
+    //         ErrorKind::NotFound => match File::create("hello.txt") {
+    //             Ok(fc) => fc,
+    //             Err(e) => panic!("Problem creating the file: {:?}", e),
+    //         },
+    //         other_error => panic!("Problem opening the file: {:?}", other_error),
+    //     },
+    // };
+    // f.write("buf".as_bytes())?;
+    // 打开文件
+    let f1 = read_username_from_file()?;
+    println!("{}", f1);
+    // 读取文件
+    // open_file()?;
+    let f2 = open_file();
+    let mut f3 = match f2 {
+        Ok(file) => file,
         Err(error) => panic!("Problem opening the file: {:?}", error),
     };
-    println!("Got value: {:?}", value);
-    let value = returns_err();
-    println!("{:?}", value);
-
+    let mut buf = String::new();
+    println!("182: {:?}", f3.read_to_string(&mut buf)?);
+    println!("183: {:?}", buf);
     Ok(())
 }
 
-// Result<T, E> 代表可能出错的操作
-fn returns_ok() -> Result<String, MyError> {
-    Ok("everything is fine".to_string())
+#[allow(dead_code)]
+fn open_file() -> Result<File, Box<dyn std::error::Error>> {
+    let f = File::open("hello.txt")?;
+    Ok(f)
 }
 
-fn returns_err() -> Result<String, MyError> {
-    Err(MyError("something went wrong".to_string()))
+fn read_username_from_file() -> Result<String, io::Error> {
+    let mut f = File::open("hello.txt")?; // ? 代替 match ?是个宏
+    let mut s = String::new();
+    f.read_to_string(&mut s)?;
+    Ok(s)
 }
+
+// Result<T, E> 代表可能出错的操作
+// fn returns_ok() -> Result<String, MyError> {
+//     Ok("everything is fine".to_string())
+// }
+
+// fn returns_err() -> Result<String, MyError> {
+//     Err(MyError("something went wrong".to_string()))
+// }
 
 #[derive(Debug)]
 struct MyError(String);
