@@ -3,12 +3,14 @@ use grep_lite::sha256_digest;
 use grep_lite::sheet;
 // use clap::{App, Arg};
 use regex::Regex;
+use std::fmt::Display;
 use std::fs::File;
 use std::io;
 use std::io::prelude::*;
 use std::io::BufReader;
-// use std::io::ErrorKind;
 use std::ops;
+// use std::os::unix::thread;
+use std::thread as threaded;
 
 fn process_lines<T: BufRead + Sized>(reader: T, re: Regex) {
     for line_ in reader.lines() {
@@ -181,7 +183,49 @@ fn main() -> Result<(), std::io::Error> {
     let mut buf = String::new();
     println!("182: {:?}", f3.read_to_string(&mut buf)?);
     println!("183: {:?}", buf);
+
+    let mut s = String::new();
+    let mut update_string = |str| s.push_str(str); // 想要在闭包内部捕获可变借用，需要把该闭包声明为可变类型
+    update_string("Hello, ");
+    println!("{:?}", s);
+
+    let v = vec![1, 2, 3];
+    // move 闭包会获取其使用的环境值的所有权 后面不能再使用
+    let handle = threaded::spawn(move || {
+        println!("Here's a vector: {:?}", v);
+    });
+    handle.join().unwrap();
+    // handle.join().unwrap();// 错误 因为所有权已经转移
+    // println!("{:?}", v);
+    // exec();
+    let x = vec![1, 2, 3];
+    fn_once(|z| z == x.len());
+
+    let mark_twain = "I have never let my schooling interfere with my education.";
+    print_author(&mark_twain);
+    {
+        let a = 5;
+        println!("{a}");
+        println!("{a}");
+        let c = 8;
+        println!("{c}");
+    }
     Ok(())
+}
+
+fn print_author<T: Display>(str: &T) {
+    println!("Mark Twain {}", str);
+}
+
+//FnOnce 闭包只能被调用一次
+// func 的类型 F 实现了 Copy 特征，调用时使用的将是它的拷贝，所以并没有发生所有权的转移。
+fn fn_once<F>(func: F)
+where
+    F: FnOnce(usize) -> bool + Copy,
+{
+    println!("{}", func(3));
+    println!("{}", func(4));
+    println!("{}", func(5));
 }
 
 #[allow(dead_code)]
