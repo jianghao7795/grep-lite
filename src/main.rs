@@ -1,7 +1,6 @@
 use data_encoding::HEXUPPER;
 use grep_lite::sha256_digest;
 use grep_lite::sheet;
-// use clap::{App, Arg};
 use regex::Regex;
 use std::fmt::Display;
 use std::fs::File;
@@ -9,7 +8,6 @@ use std::io;
 use std::io::prelude::*;
 use std::io::BufReader;
 use std::ops;
-// use std::os::unix::thread;
 use std::thread as threaded;
 
 fn process_lines<T: BufRead + Sized>(reader: T, re: Regex) {
@@ -58,6 +56,10 @@ impl ops::Sub<Foo> for Bar {
     fn sub(self, _rhs: Foo) -> BarFoo {
         BarFoo
     }
+
+    //     fn add(self, _rhs: Foo) -> BarFoo {
+    //         BarFoo
+    //     }
 }
 
 fn main() -> Result<(), std::io::Error> {
@@ -100,6 +102,8 @@ fn main() -> Result<(), std::io::Error> {
 
     println!("{}", add_five::add_five::add_six::add_six(55));
     println!("{}", add_five::add_five::add_six::delete_six(55));
+
+    println!("{}", 90);
 
     sheet();
 
@@ -209,6 +213,10 @@ fn main() -> Result<(), std::io::Error> {
         println!("{a}");
         let c = 8;
         println!("{c}");
+
+        let v = vec![1, 2, 3];
+        println!("{}", v[0]);
+        println!("{}", 5);
     }
     Ok(())
 }
