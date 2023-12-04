@@ -46,6 +46,7 @@ impl ops::Add<Bar> for Foo {
     type Output = FooBar;
 
     fn add(self, _rhs: Bar) -> FooBar {
+        println!("{}", 55);
         FooBar
     }
 }
@@ -104,6 +105,7 @@ fn main() -> Result<(), std::io::Error> {
     println!("{}", add_five::add_five::add_six::delete_six(55));
 
     println!("{}", 90);
+    println
 
     sheet();
 
