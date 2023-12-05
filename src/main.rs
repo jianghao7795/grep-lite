@@ -105,7 +105,7 @@ fn main() -> Result<(), std::io::Error> {
     println!("{}", add_five::add_five::add_six::delete_six(55));
 
     println!("{}", 90);
-    println
+    println!("{}", "wode");
 
     sheet();
 
