@@ -4,10 +4,12 @@ use grep_lite::sheet;
 use regex::Regex;
 use std::fmt::Display;
 use std::fs::File;
+use std::fs::OpenOptions;
 use std::io;
 use std::io::prelude::*;
 use std::io::BufReader;
 use std::ops;
+// use std::simd::SimdConstPtr;
 use std::thread as threaded;
 
 fn process_lines<T: BufRead + Sized>(reader: T, re: Regex) {
@@ -106,7 +108,9 @@ fn main() -> Result<(), std::io::Error> {
 
     println!("{}", 90);
     println!("{}", "wode");
-
+    println!("{}", 6665555);
+    println!("{}", "strings");
+    println!("{}", String::from("new String"));
     sheet();
 
     let mut a = String::from("test");
@@ -138,13 +142,24 @@ fn main() -> Result<(), std::io::Error> {
     // Ok(())
     let path = "file.txt";
 
-    let mut output = match File::create(path) {
-        Ok(file) => file,
-        Err(error) => {
-            panic!("Problem opening the file: {:?}", error)
-        }
-    };
-    write!(output, "We will generate a digest of this text")?;
+    // let mut output = match File::create(path) { // 只能把文件清空 重新写入
+    //     Ok(file) => file,
+    //     Err(error) => {
+    //         panic!("Problem opening the file: {:?}", error)
+    //     }
+    // };
+    // // write!(output, "We will generate a digest of this text, me")?;
+    // output.write(b"buf").unwrap();
+
+    let mut output = OpenOptions::new() // 可以追加写入
+        .write(true)
+        .create(true)
+        .append(true)
+        .open(path)?;
+    let write_number = output
+        .write(b"We will generate a digest of this text, me")
+        .unwrap();
+    println!("{}", write_number);
 
     let input = File::open(path)?;
     let reader = BufReader::new(input);
