@@ -157,7 +157,7 @@ fn main() -> Result<(), std::io::Error> {
         .append(true)
         .open(path)?;
     let write_number = output
-        .write(b"We will generate a digest of this text, me")
+        .write(b"We will generate a digest of this text, me.\n")
         .unwrap();
     println!("{}", write_number);
 
