@@ -2,6 +2,7 @@ use data_encoding::HEXUPPER;
 use grep_lite::sha256_digest;
 use grep_lite::sheet;
 use regex::Regex;
+use std::fmt;
 use std::fmt::Display;
 use std::fs::File;
 use std::fs::OpenOptions;
@@ -9,6 +10,7 @@ use std::io;
 use std::io::prelude::*;
 use std::io::BufReader;
 use std::ops;
+use std::ops::Add;
 // use std::simd::SimdConstPtr;
 use std::thread as threaded;
 
@@ -65,6 +67,33 @@ impl ops::Sub<Foo> for Bar {
     //     }
 }
 
+struct Wrapper(Vec<String>);
+
+impl fmt::Display for Wrapper {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "[{}]", self.0.join(", "))
+    }
+}
+
+struct Meters(u32);
+
+impl fmt::Display for Meters {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "目标地点距离你{}米", self.0)
+    }
+}
+
+impl Add for Meters {
+    type Output = Self;
+    fn add(self, other: Meters) -> Self {
+        Self(self.0 + other.0)
+    }
+}
+
+fn calculate_distance(d1: Meters, d2: Meters) -> Meters {
+    d1 + d2
+}
+
 fn main() -> Result<(), std::io::Error> {
     let args = clap::App::new("grep-lite")
         .version("0.1")
@@ -111,6 +140,13 @@ fn main() -> Result<(), std::io::Error> {
     println!("{}", 6665555);
     println!("{}", "strings");
     println!("{}", String::from("new String"));
+    println!("{}", 'a');
+
+    let w = Wrapper(vec![String::from("hello"), String::from("world")]);
+    println!("{}", w);
+
+    let d = calculate_distance(Meters(50), Meters(20));
+    println!("{}", d);
     sheet();
 
     let mut a = String::from("test");
