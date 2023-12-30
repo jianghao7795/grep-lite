@@ -3,7 +3,6 @@ use grep_lite::sha256_digest;
 use grep_lite::sheet;
 use regex::Regex;
 use std::fmt;
-use std::fmt::Display;
 use std::fs::File;
 use std::fs::OpenOptions;
 use std::io;
@@ -50,7 +49,7 @@ impl ops::Add<Bar> for Foo {
     type Output = FooBar;
 
     fn add(self, _rhs: Bar) -> FooBar {
-        println!("{}", 55);
+        println!("{}", 1);
         FooBar
     }
 }
@@ -61,10 +60,6 @@ impl ops::Sub<Foo> for Bar {
     fn sub(self, _rhs: Foo) -> BarFoo {
         BarFoo
     }
-
-    //     fn add(self, _rhs: Foo) -> BarFoo {
-    //         BarFoo
-    //     }
 }
 
 struct Wrapper(Vec<String>);
@@ -274,7 +269,7 @@ fn main() -> Result<(), std::io::Error> {
     Ok(())
 }
 
-fn print_author<T: Display>(str: &T) {
+fn print_author<T: fmt::Display>(str: &T) {
     println!("Mark Twain {}", str);
 }
 
