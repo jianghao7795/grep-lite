@@ -10,7 +10,6 @@ use std::io::prelude::*;
 use std::io::BufReader;
 use std::ops;
 use std::ops::Add;
-// use std::simd::SimdConstPtr;
 use std::thread as threaded;
 
 fn process_lines<T: BufRead + Sized>(reader: T, re: Regex) {
@@ -28,6 +27,7 @@ mod add_four; // 代表文件和文件夹
 mod add_three; // 代表文件夹 add_three
 mod add_two; // 代表文件 add_two.rs
 mod equal;
+mod sortor;
 
 mod add {
     pub mod add_noe {
@@ -265,6 +265,11 @@ fn main() -> Result<(), std::io::Error> {
         let v = vec![1, 2, 3];
         println!("{}", v[0]);
         println!("{}", 5);
+    }
+    {
+        equal::equal_one::rand();
+        equal::equal_one::rand_num();
+        let _ = equal::equal_two::normal();
     }
     Ok(())
 }
