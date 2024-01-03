@@ -271,6 +271,10 @@ fn main() -> Result<(), std::io::Error> {
         equal::equal_one::rand_num();
         let _ = equal::equal_two::normal();
     }
+    {
+        sortor::sortor::sortor1();
+        sortor::sortor::sortor2();
+    }
     Ok(())
 }
 
