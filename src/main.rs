@@ -274,6 +274,8 @@ fn main() -> Result<(), std::io::Error> {
     {
         sortor::sortor::sortor1();
         sortor::sortor::sortor2();
+
+        sortor::random::point();
     }
     Ok(())
 }
