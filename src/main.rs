@@ -276,6 +276,8 @@ fn main() -> Result<(), std::io::Error> {
         sortor::sortor::sortor2();
 
         sortor::random::point();
+
+        grep_lite::iterat();
     }
     Ok(())
 }

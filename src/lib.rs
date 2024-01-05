@@ -4,6 +4,11 @@ use ring::digest::{Context, Digest, SHA256};
 use std::io::Read;
 
 mod add_two;
+mod iterator;
+
+pub fn iterat() {
+    iterator::iterator::iterat();
+}
 
 error_chain! {
    foreign_links {
