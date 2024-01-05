@@ -8,6 +8,10 @@ mod iterator;
 
 pub fn iterat() {
     iterator::iterator::iterat();
+
+    iterator::iterator::point();
+
+    iterator::iterator::matching();
 }
 
 error_chain! {

@@ -148,4 +148,37 @@ pub mod iterator {
             println!("{}", val);
         }
     }
+
+    fn point_view(mut a: Vec<i32>) -> Vec<i32> {
+        println!("{:p}", &a);
+        a.push(10);
+        a
+    }
+    pub fn point() {
+        let mut x = vec![6, 7, 8];
+        println!("{:p}", &x);
+        x.push(9);
+        println!("{:p}", &x); // 数据x 在堆中不会更新地址
+        let y = point_view(x);
+        println!("{:?}", y);
+    }
+
+    pub fn matching() {
+        let x = Some(5);
+        let y = 10;
+        let z: Option<i32> = None;
+
+        match x {
+            Some(50) => println!("Got 50"),
+            Some(y) => println!("Matched, y = {:?}", y),
+            _ => println!("Default case, x = {:?}", x),
+        }
+
+        match z {
+            Some(y) => println!("Matched, y = {:?}", y),
+            None => println!("None"),
+        }
+
+        println!("at the end: x = {:?}, y = {:?}", x, y);
+    }
 }
