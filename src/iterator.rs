@@ -126,7 +126,7 @@ pub mod iterator {
             // assert_eq!(counter.next(), Some(5), "{}", 5);
             // assert_eq!(counter.next(), None, "None");
 
-            let sum: u32 = counter
+            let sum: u32 = counter // Counter实现了Iterator 不需要iter
                 .zip(Counter::new())
                 .map(|(a, b)| a * b)
                 .filter(|x| x % 3 == 0)
