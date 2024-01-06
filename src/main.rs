@@ -1,6 +1,7 @@
 use data_encoding::HEXUPPER;
 use grep_lite::sha256_digest;
 use grep_lite::sheet;
+use grep_lite::string_slice;
 use regex::Regex;
 use std::fmt;
 use std::fs::File;
@@ -278,6 +279,9 @@ fn main() -> Result<(), std::io::Error> {
         sortor::random::point();
 
         grep_lite::iterat();
+    }
+    {
+        string_slice::string_slice::string_str();
     }
     Ok(())
 }

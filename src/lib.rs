@@ -5,6 +5,7 @@ use std::io::Read;
 
 mod add_two;
 mod iterator;
+pub mod string_slice;
 
 pub fn iterat() {
     iterator::iterator::iterat();
