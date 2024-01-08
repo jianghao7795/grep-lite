@@ -282,6 +282,7 @@ fn main() -> Result<(), std::io::Error> {
     }
     {
         string_slice::string_slice::string_str();
+        string_slice::string_slice::slice_example();
     }
     Ok(())
 }
