@@ -35,12 +35,18 @@ pub mod string_slice {
         // let your_string = "nice hello";
         // println!("{}", scoend_world(&your_string.to_string())) 实现不了 fn scoend_world(s: &str) -> &str
         let mut your_string = String::from("nice hello");
-        println!("{}", scoend_world(&mut your_string)) // 实现了
+        println!("{}", scoend_world(&mut your_string)); // 实现了
+
+        let a = Some(5);
+        if let Some(9) = a {
+            println!("test5");
+        }
     }
 
     fn scoend_world(s: &mut String) -> &str {
         *s += " sdfasdf";
-        &(*s.as_str())
+        // &(s[..])
+        &s[..]
     }
 
     fn first_world(s: &str) -> &str {
