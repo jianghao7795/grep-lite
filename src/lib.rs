@@ -4,8 +4,13 @@ use ring::digest::{Context, Digest, SHA256};
 use std::io::Read;
 
 mod add_two;
+mod err_handle;
 mod iterator;
 pub mod string_slice;
+
+pub fn run_err_handle() {
+    err_handle::err_handle::err_result();
+}
 
 pub fn iterat() {
     iterator::iterator::iterat();

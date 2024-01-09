@@ -284,6 +284,10 @@ fn main() -> Result<(), std::io::Error> {
         string_slice::string_slice::string_str();
         string_slice::string_slice::slice_example();
     }
+    // error handle
+    {
+        grep_lite::run_err_handle();
+    }
     Ok(())
 }
 
