@@ -1,7 +1,8 @@
 pub mod err_handle {
     use std::{
         fs::{File, OpenOptions},
-        io::{ErrorKind, Write},
+        io::{ErrorKind, Read, Write},
+        net::IpAddr,
     };
 
     use std::process;
@@ -79,5 +80,23 @@ pub mod err_handle {
         println!("{write_number}");
         // let write_number = output.write(b"sssss\n").unwrap();
         // println!("{write_number}");
+
+        {
+            let mut username = String::new();
+            File::open("hello.txt")
+                .unwrap_or_else(|e| {
+                    println!("打开文件错误: {e}");
+                    process::exit(1);
+                })
+                .read_to_string(&mut username)
+                .expect("fail read to file");
+            println!("{username}");
+        }
+        {
+            let home: IpAddr = "127.0.0.1"
+                .parse()
+                .expect("Hardcoded IP address should be valid");
+            println!("{:?}", home);
+        }
     }
 }
