@@ -1,5 +1,10 @@
 pub mod err_handle {
-    use std::{fs::File, io::ErrorKind};
+    use std::{
+        fs::{File, OpenOptions},
+        io::{ErrorKind, Write},
+    };
+
+    use std::process;
 
     pub fn err_result() {
         {
@@ -49,5 +54,30 @@ pub mod err_handle {
             // };
             // println!("{s}");
         }
+        // ? 直接返回 Result<T>
+        let path = "hello1.txt";
+        let mut output = OpenOptions::new()
+            .write(true)
+            .read(true)
+            .create(true)
+            .append(true)
+            .open(path)
+            .unwrap_or_else(|e| {
+                println!("打开文件错误: {e}");
+                process::exit(1);
+            });
+        println!("{:?}", output);
+        // let mut output = OpenOptions::new() // 可以追加写入
+        //     .write(true)
+        //     .create(true)
+        //     .append(true)
+        //     .open(path)?;
+
+        let write_number = output
+            .write(b"We will generate a digest of this text, me.\n")
+            .unwrap();
+        println!("{write_number}");
+        // let write_number = output.write(b"sssss\n").unwrap();
+        // println!("{write_number}");
     }
 }
