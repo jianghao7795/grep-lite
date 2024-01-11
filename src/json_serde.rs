@@ -17,8 +17,14 @@ pub mod json_serde {
                 "key2": 42
             }
         "#;
-
-        let parsed_data: MyData = serde_json::from_str(json_data)?;
+        // unwrap_or_else 返回默认值
+        let parsed_data: MyData = serde_json::from_str(json_data).unwrap_or_else(|e| {
+            println!("{:?}", e);
+            return MyData {
+                key1: "test".to_string(),
+                key2: 1,
+            };
+        });
         println!("{}", parsed_data.key1);
         println!("{}", parsed_data.key2);
         Ok(parsed_data)

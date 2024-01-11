@@ -6,18 +6,18 @@ pub mod err_handle {
     };
 
     use std::process;
-
+    // ? 的使用 必须有返回值 Result<(), Error>
     pub fn err_result() {
         {
             // match 错误处理
-            let f = File::open("hello.txt");
+            let f = File::open("hello.txt").expect("file or dir can`t find");
 
-            let f = match f {
-                Ok(file) => file,
-                Err(error) => {
-                    panic!("file not open: {:?}", error)
-                }
-            };
+            // let f = match f {
+            //     Ok(file) => file,
+            //     Err(error) => {
+            //         panic!("file not open: {:?}", error)
+            //     }
+            // };
             println!("{:?}", f);
             // let s = f.write(b"test");
 

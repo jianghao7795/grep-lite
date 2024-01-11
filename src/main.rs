@@ -189,9 +189,7 @@ fn main() -> Result<(), std::io::Error> {
         .create(true)
         .append(true)
         .open(path)?;
-    let write_number = output
-        .write(b"We will generate a digest of this text, me.\n")
-        .unwrap();
+    let write_number = output.write(b"We will generate a digest of this text, me.\n")?;
     println!("{}", write_number);
 
     let input = File::open(path)?;
