@@ -6,7 +6,16 @@ use std::io::Read;
 mod add_two;
 mod err_handle;
 mod iterator;
+mod json_serde;
 pub mod string_slice;
+
+pub fn run_json() {
+    let my_data = json_serde::json_serde::json_to_data();
+    match my_data {
+        Ok(data) => println!("{:?}", data),
+        Err(e) => println!("{:?}", e),
+    }
+}
 
 pub fn run_err_handle() {
     err_handle::err_handle::err_result();

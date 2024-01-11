@@ -137,6 +137,7 @@ fn main() -> Result<(), std::io::Error> {
     println!("{}", "strings");
     println!("{}", String::from("new String"));
     println!("{}", 'a');
+    println!("{}", 1);
 
     let w = Wrapper(vec![String::from("hello"), String::from("world")]);
     println!("{}", w);
@@ -290,6 +291,9 @@ fn main() -> Result<(), std::io::Error> {
     }
     {
         add_five::add_five::add_five_then();
+    }
+    {
+        grep_lite::run_json();
     }
     Ok(())
 }
