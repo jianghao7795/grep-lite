@@ -288,6 +288,9 @@ fn main() -> Result<(), std::io::Error> {
     {
         grep_lite::run_err_handle();
     }
+    {
+        add_five::add_five::add_five_then();
+    }
     Ok(())
 }
 

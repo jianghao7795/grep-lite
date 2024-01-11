@@ -3,6 +3,12 @@ pub mod add_five {
         base + 5
     }
 
+    pub fn add_five_then() {
+        println!("test");
+        let output_file = std::fs::File::open("hello1.txt").expect("file con`t open");
+        println!("{:?}", output_file);
+    }
+
     pub fn add_five_then_equal_one(base: u32) -> bool {
         crate::equal::equal_one::equal_one(add_five(base))
     }
