@@ -293,6 +293,20 @@ fn main() -> Result<(), std::io::Error> {
     {
         grep_lite::run_json();
     }
+    {
+        grep_lite::run_trait();
+    }
+    {
+        fn sq_then_to_string(x: u32) -> Option<String> {
+            // checked_mul 是 调用者与参数的积
+            x.checked_mul(3 * x).map(|sq| sq.to_string())
+        }
+        // and_then Option 调用 参数可以是闭包 也可以是函数
+        assert_eq!(
+            Some(10).and_then(sq_then_to_string),
+            Some("200".to_string())
+        );
+    }
     Ok(())
 }
 

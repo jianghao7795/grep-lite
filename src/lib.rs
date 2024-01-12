@@ -8,6 +8,16 @@ mod err_handle;
 mod iterator;
 mod json_serde;
 pub mod string_slice;
+mod trait_demo;
+
+pub fn run_trait() {
+    let a = trait_demo::trait_add::add(1, 2);
+    println!("{a}");
+    let b = trait_demo::trait_add::add(1.1, 3.3);
+    println!("{b}");
+
+    trait_demo::trait_add::demo();
+}
 
 pub fn run_json() {
     let my_data = json_serde::json_serde_data::json_to_data().expect("str to json fail");
