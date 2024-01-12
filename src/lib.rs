@@ -10,11 +10,8 @@ mod json_serde;
 pub mod string_slice;
 
 pub fn run_json() {
-    let my_data = json_serde::json_serde::json_to_data();
-    match my_data {
-        Ok(data) => println!("{:?}", data),
-        Err(e) => println!("{:?}", e),
-    }
+    let my_data = json_serde::json_serde_data::json_to_data().expect("str to json fail");
+    println!("{:?}", my_data);
 }
 
 pub fn run_err_handle() {

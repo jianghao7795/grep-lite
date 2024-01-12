@@ -1,4 +1,4 @@
-pub mod json_serde {
+pub mod json_serde_data {
     use serde::Deserialize;
     use serde_json::Result;
 
