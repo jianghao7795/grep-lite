@@ -304,8 +304,11 @@ fn main() -> Result<(), std::io::Error> {
         // and_then Option 调用 参数可以是闭包 也可以是函数
         assert_eq!(
             Some(10).and_then(sq_then_to_string),
-            Some("200".to_string())
+            Some("300".to_string())
         );
+    }
+    {
+        grep_lite::run_generality_feature();
     }
     Ok(())
 }

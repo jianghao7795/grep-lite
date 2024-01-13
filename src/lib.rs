@@ -5,10 +5,20 @@ use std::io::Read;
 
 mod add_two;
 mod err_handle;
+mod generality_feature;
 mod iterator;
 mod json_serde;
 pub mod string_slice;
 mod trait_demo;
+
+pub fn run_generality_feature() {
+    generality_feature::generality::run_add();
+    generality_feature::generality::run_struct_add_sub();
+
+    generality_feature::generality::run_mixup();
+
+    generality_feature::generality::run_display_array();
+}
 
 pub fn run_trait() {
     let a = trait_demo::trait_add::add(1, 2);
