@@ -92,4 +92,49 @@ pub mod generality {
     // }
 }
 
-pub mod feature {}
+pub mod feature {
+    pub trait Summary {
+        fn summarize(&self) -> String;
+    }
+
+    #[derive(Debug)]
+    pub struct Post {
+        pub title: String,   // 标题
+        pub author: String,  // 作者
+        pub content: String, // 内容
+    }
+
+    impl Summary for Post {
+        fn summarize(&self) -> String {
+            format!("文章{}, 作者是{}", self.title, self.author)
+        }
+    }
+
+    #[derive(Debug)]
+    pub struct Weibo {
+        pub username: String,
+        pub content: String,
+    }
+
+    impl Summary for Weibo {
+        fn summarize(&self) -> String {
+            format!("{}发表了微博{}", self.username, self.content)
+        }
+    }
+
+    // 返回 Summary 特征 由不同struct 实现 返回不同实体
+    pub fn returns_summarizable(switch: bool) -> Box<dyn Summary> {
+        if switch {
+            Box::new(Post {
+                title: "test".to_string(),
+                author: "test".to_string(),
+                content: "test".to_string(),
+            })
+        } else {
+            Box::new(Weibo {
+                username: "auth".to_string(),
+                content: "test".to_string(),
+            })
+        }
+    }
+}

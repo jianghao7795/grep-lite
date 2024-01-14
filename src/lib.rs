@@ -18,6 +18,9 @@ pub fn run_generality_feature() {
     generality_feature::generality::run_mixup();
 
     generality_feature::generality::run_display_array();
+
+    let t = generality_feature::feature::returns_summarizable(false);
+    println!("{:?}", t.summarize());
 }
 
 pub fn run_trait() {
