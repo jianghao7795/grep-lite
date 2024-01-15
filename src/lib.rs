@@ -8,9 +8,15 @@ mod err_handle;
 mod generality_feature;
 mod iterator;
 mod json_serde;
-pub mod string_slice;
+mod string_slice;
 mod trait_demo;
 mod tuple_string;
+
+pub fn run_string_slice() {
+    string_slice::string_slice::slice_example();
+    string_slice::string_slice::string_str();
+    string_slice::slice::run_slice();
+}
 
 pub fn run_tuple_string() {
     tuple_string::tuple::run_reverse();

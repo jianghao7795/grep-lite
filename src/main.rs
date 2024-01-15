@@ -1,7 +1,6 @@
 use data_encoding::HEXUPPER;
 use grep_lite::sha256_digest;
 use grep_lite::sheet;
-use grep_lite::string_slice;
 use regex::Regex;
 use std::fmt;
 use std::fs::File;
@@ -281,8 +280,9 @@ fn main() -> Result<(), std::io::Error> {
         grep_lite::iterat();
     }
     {
-        string_slice::string_slice::string_str();
-        string_slice::string_slice::slice_example();
+        //     grep_lite::string_slice::string_slice::string_str();
+        //     grep_lite::string_slice::string_slice::slice_example();
+        grep_lite::run_string_slice();
     }
     // error handle 错误处理
     {
