@@ -15,6 +15,7 @@ mod tuple_string;
 
 pub fn run_linked_list() {
     linked_list::linked::run_linked();
+    linked_list::linked::run_ref();
 }
 
 pub fn run_string_slice() {
