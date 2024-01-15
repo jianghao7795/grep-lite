@@ -8,9 +8,14 @@ mod err_handle;
 mod generality_feature;
 mod iterator;
 mod json_serde;
+mod linked_list;
 mod string_slice;
 mod trait_demo;
 mod tuple_string;
+
+pub fn run_linked_list() {
+    linked_list::linked::run_linked();
+}
 
 pub fn run_string_slice() {
     string_slice::string_slice::slice_example();

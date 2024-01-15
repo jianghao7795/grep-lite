@@ -330,6 +330,9 @@ fn main() -> Result<(), std::io::Error> {
     {
         grep_lite::run_tuple_string();
     }
+    {
+        grep_lite::run_linked_list();
+    }
     Ok(())
 }
 
