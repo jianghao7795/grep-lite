@@ -333,6 +333,9 @@ fn main() -> Result<(), std::io::Error> {
     {
         grep_lite::run_linked_list();
     }
+    {
+        grep_lite::run_raii();
+    }
     Ok(())
 }
 

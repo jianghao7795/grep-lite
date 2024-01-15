@@ -9,9 +9,14 @@ mod generality_feature;
 mod iterator;
 mod json_serde;
 mod linked_list;
+mod raii;
 mod string_slice;
 mod trait_demo;
 mod tuple_string;
+
+pub fn run_raii() {
+    raii::run_box();
+}
 
 pub fn run_linked_list() {
     linked_list::linked::run_linked();
