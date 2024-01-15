@@ -11,6 +11,7 @@ use std::io::prelude::*;
 use std::io::BufReader;
 use std::ops;
 use std::ops::Add;
+use std::path::Path;
 use std::thread as threaded;
 
 fn process_lines<T: BufRead + Sized>(reader: T, re: Regex) {
@@ -309,6 +310,22 @@ fn main() -> Result<(), std::io::Error> {
     }
     {
         grep_lite::run_generality_feature();
+    }
+    {
+        // 文件自动关闭
+        let path = Path::new("hello.txt");
+        let display = path.display();
+
+        let mut file = match File::open(&path) {
+            Err(why) => panic!("couldn't open {}: {}", display, why),
+            Ok(file) => file,
+        };
+
+        let mut s = String::new();
+        match file.read_to_string(&mut s) {
+            Err(why) => panic!("couldn't read {}: {}", display, why),
+            Ok(_) => print!("{} contains:\n{}", display, s),
+        }
     }
     Ok(())
 }
