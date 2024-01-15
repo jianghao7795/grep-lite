@@ -10,6 +10,11 @@ mod iterator;
 mod json_serde;
 pub mod string_slice;
 mod trait_demo;
+mod tuple_string;
+
+pub fn run_tuple_string() {
+    tuple_string::tuple::run_reverse();
+}
 
 pub fn run_generality_feature() {
     generality_feature::generality::run_add();

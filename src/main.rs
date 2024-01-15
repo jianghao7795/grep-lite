@@ -327,6 +327,9 @@ fn main() -> Result<(), std::io::Error> {
             Ok(_) => print!("{} contains:\n{}", display, s),
         }
     }
+    {
+        grep_lite::run_tuple_string();
+    }
     Ok(())
 }
 
