@@ -339,6 +339,9 @@ fn main() -> Result<(), std::io::Error> {
     {
         grep_lite::run_mutable();
     }
+    {
+        grep_lite::run_fmt_display();
+    }
     Ok(())
 }
 
