@@ -9,10 +9,16 @@ mod generality_feature;
 mod iterator;
 mod json_serde;
 mod linked_list;
+mod mutable;
 mod raii;
 mod string_slice;
 mod trait_demo;
 mod tuple_string;
+
+pub fn run_mutable() {
+    mutable::run_book();
+    mutable::run_point();
+}
 
 pub fn run_raii() {
     raii::run_box();

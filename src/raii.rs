@@ -17,7 +17,7 @@ pub fn run_box() {
 
     // 创建一大堆 box（只是因为好玩）。
     // 完全不需要手动释放内存！
-    for _ in 0u32..1_000 {
+    for _ in 0u32..1 {
         create_box();
     }
 
