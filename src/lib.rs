@@ -4,7 +4,9 @@ use ring::digest::{Context, Digest, SHA256};
 use std::io::Read;
 
 mod add_two;
+mod closure_fn;
 mod err_handle;
+mod expression;
 mod fmt_display;
 mod generality_feature;
 mod iterator;
@@ -15,6 +17,14 @@ mod raii;
 mod string_slice;
 mod trait_demo;
 mod tuple_string;
+
+pub fn run_closure_fn() {
+    closure_fn::run_closure();
+}
+
+pub fn run_expression() {
+    expression::run_expression();
+}
 
 pub fn run_fmt_display() {
     fmt_display::run_fmt();

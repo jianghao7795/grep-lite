@@ -1,6 +1,5 @@
 pub mod linked {
     use List::*;
-
     enum List {
         Cons(u32, Box<List>),
         Nil,
@@ -71,10 +70,10 @@ pub mod linked {
             // `&i32`
             // `&val`
             // ^ 我们看到，如果匹配的 `&` 都去掉了，那么就是 `i32` 赋给 `val`。
-            &val => println!("Got a value via destructuring: {:?}", val),
+            &val => println!("Got a value via destructuring: {}", val),
         }
 
-        // 为了避免 `&` 的使用，需要在匹配前解引用。
+        // 为了避免 `&` 的使用，需要在匹配前解引用*。
         match *reference {
             val => println!("Got a value via dereferencing: {:?}", val),
         }

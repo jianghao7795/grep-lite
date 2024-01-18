@@ -124,6 +124,7 @@ fn main() -> Result<(), std::io::Error> {
     println!("{}", crate::add::add_noe::add_one(55));
     println!("{}", add_two::add_two::add_two(77));
     println!("{}", add_three::add_three::add_three(99));
+    add_three::ten::index();
     println!("{}", add_four::add_four::add_four(50));
     println!("{}", equal::equal_one::equal_one(4));
     println!("{}", add_five::add_five::add_five_then_equal_one(0));
@@ -131,13 +132,14 @@ fn main() -> Result<(), std::io::Error> {
     println!("{}", add_five::add_five::add_six::add_six(55));
     println!("{}", add_five::add_five::add_six::delete_six(55));
 
-    println!("{}", 90);
-    println!("{}", "wode");
-    println!("{}", 6665555);
-    println!("{}", "strings");
-    println!("{}", String::from("new String"));
-    println!("{}", 'a');
-    println!("{}", 1);
+    // println!("{}", 90);
+    // println!("{}", "wode");
+    // println!("{}", 6665555);
+    // println!("{}", "strings");
+    // println!("{}", String::from("new String"));
+    // println!("{}", 'a');
+    // println!("{}", 1);
+    // TODO test
 
     let w = Wrapper(vec![String::from("hello"), String::from("world")]);
     println!("{}", w);
@@ -341,6 +343,12 @@ fn main() -> Result<(), std::io::Error> {
     }
     {
         grep_lite::run_fmt_display();
+    }
+    {
+        grep_lite::run_expression();
+    }
+    {
+        grep_lite::run_closure_fn();
     }
     Ok(())
 }
