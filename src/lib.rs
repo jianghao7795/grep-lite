@@ -13,10 +13,15 @@ mod iterator;
 mod json_serde;
 mod linked_list;
 mod mutable;
+mod point;
 mod raii;
 mod string_slice;
 mod trait_demo;
 mod tuple_string;
+
+pub fn run_point() {
+    point::destructure();
+}
 
 pub fn run_closure_fn() {
     closure_fn::run_closure();

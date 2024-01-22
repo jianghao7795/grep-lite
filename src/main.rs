@@ -352,6 +352,9 @@ fn main() -> Result<(), std::io::Error> {
     {
         grep_lite::run_closure_fn();
     }
+    {
+        grep_lite::run_point();
+    }
     Ok(())
 }
 
