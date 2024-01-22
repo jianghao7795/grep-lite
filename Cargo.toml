@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = "^2"
+clap = "^2"                                        #读取命令行输入
 data-encoding = "2.5.0"
 error-chain = "0.12.4"
 rand = "0.8.5"

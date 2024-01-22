@@ -91,9 +91,11 @@ fn calculate_distance(d1: Meters, d2: Meters) -> Meters {
 }
 
 fn main() -> Result<(), std::io::Error> {
-    let args = clap::App::new("grep-lite")
-        .version("0.1")
-        .about("searches for patterns")
+    let args = clap::App::new("grep") // 应用名
+        .version("0.1") // 应用version
+        .about("searches for patterns") // about
+        .author("user") // user
+        .arg_from_usage("-p, --path=[FILE] 'Target file you want to change'") // Options
         .arg(
             clap::Arg::with_name("pattern")
                 .help("The pattern to search for")
@@ -107,7 +109,7 @@ fn main() -> Result<(), std::io::Error> {
                 .required(true),
         )
         .get_matches();
-
+    println!("{:?}", args);
     let pattern = args.value_of("pattern").unwrap();
     let re = Regex::new(pattern).unwrap();
 
