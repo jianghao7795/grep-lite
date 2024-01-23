@@ -274,6 +274,8 @@ fn main() -> Result<(), std::io::Error> {
         equal::equal_one::rand();
         equal::equal_one::rand_num();
         let _ = equal::equal_two::normal();
+
+        equal::equal_two::anon();
     }
     {
         sortor::sortor::sortor1();

@@ -51,4 +51,34 @@ pub mod equal_two {
         println!("  正态分布： {}", v);
         Ok(())
     }
+
+    pub fn anon() {
+        let fn_plain = create_fn();
+        let mut fn_mut = create_fnmut();
+        let fn_once = create_fnonce();
+
+        fn_plain();
+        fn_mut();
+        fn_once();
+    }
+
+    fn create_fn() -> impl Fn() {
+        let text = "Fn".to_owned();
+
+        move || println!("This is a: {}", text)
+    }
+
+    fn create_fnmut() -> impl FnMut() {
+        let text = "FnMut".to_owned();
+
+        let substr = text + "test";
+
+        move || println!("This is a: {}", substr)
+    }
+
+    fn create_fnonce() -> impl FnOnce() {
+        let text = "FnOnce".to_owned();
+
+        move || println!("This is a: {}", text)
+    }
 }
