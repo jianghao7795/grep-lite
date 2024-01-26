@@ -357,6 +357,9 @@ fn main() -> Result<(), std::io::Error> {
     {
         grep_lite::run_point();
     }
+    {
+        grep_lite::run_if_cfg();
+    }
     Ok(())
 }
 

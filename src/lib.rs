@@ -9,6 +9,7 @@ mod err_handle;
 mod expression;
 mod fmt_display;
 mod generality_feature;
+mod if_cfg;
 mod iterator;
 mod json_serde;
 mod linked_list;
@@ -18,6 +19,10 @@ mod raii;
 mod string_slice;
 mod trait_demo;
 mod tuple_string;
+
+pub fn run_if_cfg() {
+    if_cfg::run_cfg();
+}
 
 pub fn run_point() {
     point::destructure();
