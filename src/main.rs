@@ -360,6 +360,9 @@ fn main() -> Result<(), std::io::Error> {
     {
         grep_lite::run_if_cfg();
     }
+    {
+        grep_lite::run_candle();
+    }
     Ok(())
 }
 

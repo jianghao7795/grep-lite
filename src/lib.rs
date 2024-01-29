@@ -4,6 +4,7 @@ use ring::digest::{Context, Digest, SHA256};
 use std::io::Read;
 
 mod add_two;
+mod candle;
 mod closure_fn;
 mod err_handle;
 mod expression;
@@ -19,6 +20,10 @@ mod raii;
 mod string_slice;
 mod trait_demo;
 mod tuple_string;
+
+pub fn run_candle() {
+    let _ = candle::candle_explmt().expect("error");
+}
 
 pub fn run_if_cfg() {
     if_cfg::run_cfg();
