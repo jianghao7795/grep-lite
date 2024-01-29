@@ -22,6 +22,10 @@ mod string_slice;
 mod trait_demo;
 mod tuple_string;
 
+pub fn run_trai_demo() {
+    trait_demo::animal::demo();
+}
+
 pub fn run_phantom() {
     phantom_type::run_phantom();
 }

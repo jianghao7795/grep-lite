@@ -29,6 +29,15 @@ impl<Unit> Add for Length<Unit> {
     }
 }
 
+// 产生一个拥有 `'static` 生命周期的常量。
+static NUM: i32 = 18;
+
+// 返回一个指向 `NUM` 的引用，该引用不取 `NUM` 的 `'static` 生命周期，
+// 而是被强制转换成和输入参数的一样。
+fn coerce_static<'a>(_: &'a i32) -> &'a i32 {
+    &NUM
+}
+
 pub fn run_phantom() {
     // 这里的 `f32` 和 `f64` 是隐藏参数。
     // 被指定为 `<char, f32>` 的 `PhantomTuple` 类型。
@@ -68,4 +77,13 @@ pub fn run_phantom() {
     // 加法正常执行。
     println!("one foot + one_foot = {:?} in", two_feet.0);
     println!("one meter + one_meter = {:?} mm", two_meters.0);
+
+    {
+        let static_string: &'static str = "I'm in read-only memory";
+        println!("static_string: {}", static_string);
+    }
+    {
+        println!("static_string: {}", NUM);
+        println!("static_string: {:p}", coerce_static(&NUM));
+    }
 }
