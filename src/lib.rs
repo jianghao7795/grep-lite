@@ -15,11 +15,16 @@ mod iterator;
 mod json_serde;
 mod linked_list;
 mod mutable;
+mod phantom_type;
 mod point;
 mod raii;
 mod string_slice;
 mod trait_demo;
 mod tuple_string;
+
+pub fn run_phantom() {
+    phantom_type::run_phantom();
+}
 
 pub fn run_candle() {
     let _ = candle::candle_explmt().expect("error");
