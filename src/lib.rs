@@ -13,6 +13,7 @@ mod generality_feature;
 mod if_cfg;
 mod iterator;
 mod json_serde;
+mod linked;
 mod linked_list;
 mod mutable;
 mod phantom_type;
@@ -21,6 +22,35 @@ mod raii;
 mod string_slice;
 mod trait_demo;
 mod tuple_string;
+
+pub fn run_linked() {
+    let mut list = linked::List::new();
+
+    // Populate list
+    list.push(1);
+    list.push(2);
+    list.push(3);
+
+    // Check normal removal
+    println!("list pop is {:?}", list.pop());
+    println!("list pop is {:?}", list.pop());
+
+    // Push some more just to make sure nothing's corrupted
+    list.push(4);
+    list.push(5);
+
+    // Check normal removal
+    // assert_eq!(list.pop(), Some(5));
+    // assert_eq!(list.pop(), Some(4));
+    println!("list pop is {:?}", list.pop());
+    println!("list pop is {:?}", list.pop());
+
+    // Check exhaustion
+    // assert_eq!(list.pop(), Some(1));
+    // assert_eq!(list.pop(), None);
+    println!("list pop is {:?}", list.pop());
+    println!("list pop is {:?}", list.pop());
+}
 
 pub fn run_trai_demo() {
     trait_demo::animal::demo();

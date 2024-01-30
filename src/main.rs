@@ -361,13 +361,16 @@ fn main() -> Result<(), std::io::Error> {
         grep_lite::run_if_cfg();
     }
     {
-        grep_lite::run_candle();
+        // grep_lite::run_candle();
     }
     {
         grep_lite::run_phantom();
     }
     {
-        grep_lite::run_trai_demo()
+        grep_lite::run_trai_demo();
+    }
+    {
+        grep_lite::run_linked();
     }
     Ok(())
 }
