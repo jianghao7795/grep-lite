@@ -282,8 +282,6 @@ fn main() -> Result<(), std::io::Error> {
         sortor::sortor::sortor2();
 
         sortor::random::point();
-
-        grep_lite::iterat();
     }
     {
         //     grep_lite::string_slice::string_slice::string_str();
@@ -371,6 +369,9 @@ fn main() -> Result<(), std::io::Error> {
     }
     {
         grep_lite::run_linked();
+    }
+    {
+        grep_lite::iterat();
     }
     Ok(())
 }

@@ -144,6 +144,9 @@ pub fn iterat() {
     iterator::iterator::point();
 
     iterator::iterator::matching();
+
+    closure_fn::input();
+    iterator::iterator::demo();
 }
 
 error_chain! {
