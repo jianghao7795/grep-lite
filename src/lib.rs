@@ -54,6 +54,7 @@ pub fn run_linked() {
 
 pub fn run_trai_demo() {
     trait_demo::animal::demo();
+    println!("{:?}", "How you doing".split(' ').collect::<Vec<_>>());
 }
 
 pub fn run_phantom() {
@@ -147,6 +148,7 @@ pub fn iterat() {
 
     closure_fn::input();
     iterator::iterator::demo();
+    println!("{:?}", "How you doing".split(' ').collect::<Vec<_>>());
 }
 
 error_chain! {
