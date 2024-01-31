@@ -4,27 +4,27 @@
 // }
 // List 实现[ptr] -> (Elem A, ptr) -> (Elem B, *null*)
 use std::mem::replace; // 链表中取出元素 匿名偷出元素
-pub struct List {
-    head: Link,
+pub struct List<T> {
+    head: Link<T>,
 }
 // #[derive(Clone)]
 // enum Link {
 //     Empty,
 //     More(Box<Node>),
 // }
-type Link = Option<Box<Node>>;
+type Link<T> = Option<Box<Node<T>>>;
 // #[derive(Clone)]
-struct Node {
-    elem: i32,
-    next: Link,
+struct Node<T> {
+    elem: T,
+    next: Link<T>,
 }
 
-impl List {
+impl<T> List<T> {
     pub fn new() -> Self {
         List { head: None }
     }
 
-    pub fn push(&mut self, elem: i32) {
+    pub fn push(&mut self, elem: T) {
         // let new_node = Node {
         //     elem: elem,
         //     next: self.head.clone(),
@@ -37,7 +37,7 @@ impl List {
         self.head = Some(new_node);
     }
 
-    pub fn pop(&mut self) -> Option<i32> {
+    pub fn pop(&mut self) -> Option<T> {
         // let result;
         // match std::mem::replace(&mut self.head, Link::Empty) {
         //     Link::Empty => {
@@ -63,7 +63,7 @@ impl List {
     }
 }
 
-impl Drop for List {
+impl<T> Drop for List<T> {
     fn drop(&mut self) {
         let mut cur_link = replace(&mut self.head, None);
         while let Some(mut boxed_node) = cur_link {
