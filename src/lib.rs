@@ -11,6 +11,7 @@ mod expression;
 mod fmt_display;
 mod generality_feature;
 mod if_cfg;
+mod intoiter;
 mod iterator;
 mod json_serde;
 mod linked;
@@ -53,6 +54,39 @@ pub fn run_linked() {
     // assert_eq!(list.pop(), None);
     println!("list pop is {:?}", list.pop());
     println!("list pop is {:?}", list.pop());
+
+    let mut list = linked::List::new();
+    list.push(1);
+    list.push(2);
+    list.push(3);
+
+    let mut iter = list.into_iter();
+    println!("intoIter list next is {:?}", iter.next());
+    println!("intoIter list next is {:?}", iter.next());
+    println!("intoIter list next is {:?}", iter.next());
+    println!("intoIter list next is {:?}", iter.next());
+
+    let mut list = linked::List::new();
+    list.push(1);
+    list.push(2);
+    list.push(3);
+
+    let mut iter = list.iter();
+    println!("iter list next is {:?}", iter.next());
+    println!("iter list next is {:?}", iter.next());
+    println!("iter list next is {:?}", iter.next());
+    println!("iter list next is {:?}", iter.next());
+
+    let mut list = linked::List::new();
+    list.push(1);
+    list.push(2);
+    list.push(3);
+
+    let mut iter = list.iter_mut();
+    println!("iter mut list next is {:?}", iter.next());
+    println!("iter mut list next is {:?}", iter.next());
+    println!("iter mut list next is {:?}", iter.next());
+    println!("iter mut list next is {:?}", iter.next());
 }
 
 pub fn run_trai_demo() {
