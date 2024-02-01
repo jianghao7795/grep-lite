@@ -61,11 +61,11 @@ impl<T> List<T> {
             node.elem
         })
     }
-
+    // 获取 链表的头
     pub fn peek(&self) -> Option<&T> {
         self.head.as_ref().map(|node| &node.elem)
     }
-
+    // 设置 链表的头
     pub fn peek_mut(&mut self) -> Option<&mut T> {
         self.head.as_mut().map(|node| &mut node.elem)
     }

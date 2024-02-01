@@ -34,6 +34,9 @@ pub fn run_linked() {
     // Check normal removal
     println!("list pop is {:?}", list.pop());
     println!("list pop is {:?}", list.pop());
+    println!("list head is {:?}", list.peek());
+    list.peek_mut().map(|value| *value = 17);
+    println!("list mut head is {:?}", list.peek());
 
     // Push some more just to make sure nothing's corrupted
     list.push(4);
