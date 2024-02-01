@@ -122,9 +122,12 @@ mod test {
 
         assert_eq!(list.peek(), Some(&3));
         assert_eq!(list.peek_mut(), Some(&mut 3));
-        list.peek_mut().map(|value| {
+        // map FnOnce 返回类型为i32 调用map()返回结果Some(i32)
+        let result = list.peek_mut().map(|value| {
             *value = 42;
+            return 42;
         });
+        assert_eq!(result, Some(42));
 
         assert_eq!(list.peek(), Some(&42));
         assert_eq!(list.pop(), Some(42));

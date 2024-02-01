@@ -373,6 +373,28 @@ fn main() -> Result<(), std::io::Error> {
     {
         grep_lite::iterat();
     }
+    {
+        let k = 21;
+        let x: Result<&str, &str> = Ok("foo");
+        println!("key is {:?}", x.map_or_else(|_e| k * 2, |v| v.len()));
+
+        let x: Result<&str, &str> = Err("bar");
+        println!(
+            "key is {:?}",
+            // map_or_else 两个函数返回同一类型 Reuslt: 返回Ok 执行第二个函数 返回Ok 返回Err 执行第一个函数
+            x.map_or_else(
+                |_e| {
+                    println!("value is {}", _e);
+                    return k * 3;
+                    // return String::from("value");
+                },
+                |v| {
+                    println!("error is {}", v);
+                    v.len()
+                }
+            )
+        );
+    }
     Ok(())
 }
 
