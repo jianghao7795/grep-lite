@@ -49,16 +49,16 @@ pub fn run_rc() {
     c.set("qwer");
     let two = c.get();
     println!("{},{}", one, two);
+    let mut b = 0;
     for _ in 0..10 {
         let s = Arc::clone(&s);
-        let mut b = 0;
-        // println!("12");
         b += 1;
         thread::spawn(move || {
             println!("{}, b is {}", s, b);
             thread::sleep(time::Duration::from_secs(1));
             // return s;
         });
+        println!("{b}");
         // println!("{:?}", handle);
     }
 }
