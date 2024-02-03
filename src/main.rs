@@ -335,9 +335,6 @@ fn main() -> Result<(), std::io::Error> {
         grep_lite::run_tuple_string();
     }
     {
-        grep_lite::run_linked_list();
-    }
-    {
         grep_lite::run_raii();
     }
     {
@@ -368,9 +365,6 @@ fn main() -> Result<(), std::io::Error> {
         grep_lite::run_trai_demo();
     }
     {
-        grep_lite::run_linked();
-    }
-    {
         grep_lite::iterat();
     }
     {
@@ -394,9 +388,6 @@ fn main() -> Result<(), std::io::Error> {
                 }
             )
         );
-    }
-    {
-        grep_lite::run_linked_list_dobou();
     }
     {
         grep_lite::run_rc();

@@ -15,7 +15,6 @@ mod intoiter;
 mod iterator;
 mod json_serde;
 mod linked;
-mod linked_list;
 mod mutable;
 mod phantom_type;
 mod point;
@@ -25,51 +24,11 @@ mod string_slice;
 mod trait_demo;
 mod tuple_string;
 
-pub fn run_rc() {
-    rc::run_rc();
-}
+pub fn run_linked_first() {
+    let mut list = linked::first::List::new();
 
-pub fn run_linked_list_dobou() {
-    let mut list = linked_list::linked_list::LinkedList::new();
-
-    // Try to break an empty list
-    assert_eq!(list.len(), 0);
-    assert_eq!(list.pop_front(), None);
-    assert_eq!(list.len(), 0);
-
-    // Try to break a one item list
-    list.push_front(10);
-    assert_eq!(list.len(), 1);
-    assert_eq!(list.pop_front(), Some(10));
-    assert_eq!(list.len(), 0);
-    assert_eq!(list.pop_front(), None);
-    assert_eq!(list.len(), 0);
-
-    // Mess around
-    list.push_front(10);
-    assert_eq!(list.len(), 1);
-    list.push_front(20);
-    assert_eq!(list.len(), 2);
-    list.push_front(30);
-    assert_eq!(list.len(), 3);
-    assert_eq!(list.pop_front(), Some(30));
-    assert_eq!(list.len(), 2);
-    list.push_front(40);
-    assert_eq!(list.len(), 3);
-    assert_eq!(list.pop_front(), Some(40));
-    assert_eq!(list.len(), 2);
-    assert_eq!(list.pop_front(), Some(20));
-    assert_eq!(list.len(), 1);
-    assert_eq!(list.pop_front(), Some(10));
-    assert_eq!(list.len(), 0);
-    assert_eq!(list.pop_front(), None);
-    assert_eq!(list.len(), 0);
-    assert_eq!(list.pop_front(), None);
-    assert_eq!(list.len(), 0);
-}
-
-pub fn run_linked() {
-    let mut list = linked::List::new();
+    // Check empty list behaves right
+    assert_eq!(list.pop(), None);
 
     // Populate list
     list.push(1);
@@ -77,60 +36,24 @@ pub fn run_linked() {
     list.push(3);
 
     // Check normal removal
-    println!("list pop is {:?}", list.pop());
-    println!("list pop is {:?}", list.pop());
-    println!("list head is {:?}", list.peek());
-    list.peek_mut().map(|value| *value = 17);
-    println!("list mut head is {:?}", list.peek());
+    assert_eq!(list.pop(), Some(3));
+    assert_eq!(list.pop(), Some(2));
 
     // Push some more just to make sure nothing's corrupted
     list.push(4);
     list.push(5);
 
     // Check normal removal
-    // assert_eq!(list.pop(), Some(5));
-    // assert_eq!(list.pop(), Some(4));
-    println!("list pop is {:?}", list.pop());
-    println!("list pop is {:?}", list.pop());
+    assert_eq!(list.pop(), Some(5));
+    assert_eq!(list.pop(), Some(4));
 
     // Check exhaustion
-    // assert_eq!(list.pop(), Some(1));
-    // assert_eq!(list.pop(), None);
-    println!("list pop is {:?}", list.pop());
-    println!("list pop is {:?}", list.pop());
+    assert_eq!(list.pop(), Some(1));
+    assert_eq!(list.pop(), None);
+}
 
-    let mut list = linked::List::new();
-    list.push(1);
-    list.push(2);
-    list.push(3);
-
-    let mut iter = list.into_iter();
-    println!("intoIter list next is {:?}", iter.next());
-    println!("intoIter list next is {:?}", iter.next());
-    println!("intoIter list next is {:?}", iter.next());
-    println!("intoIter list next is {:?}", iter.next());
-
-    let mut list = linked::List::new();
-    list.push(1);
-    list.push(2);
-    list.push(3);
-
-    let mut iter = list.iter();
-    println!("iter list next is {:?}", iter.next());
-    println!("iter list next is {:?}", iter.next());
-    println!("iter list next is {:?}", iter.next());
-    println!("iter list next is {:?}", iter.next());
-
-    let mut list = linked::List::new();
-    list.push(1);
-    list.push(2);
-    list.push(3);
-
-    let mut iter = list.iter_mut();
-    println!("iter mut list next is {:?}", iter.next());
-    println!("iter mut list next is {:?}", iter.next());
-    println!("iter mut list next is {:?}", iter.next());
-    println!("iter mut list next is {:?}", iter.next());
+pub fn run_rc() {
+    rc::run_rc();
 }
 
 pub fn run_trai_demo() {
@@ -141,10 +64,6 @@ pub fn run_trai_demo() {
 pub fn run_phantom() {
     phantom_type::run_phantom();
 }
-
-// pub fn run_candle() {
-//     let _ = candle::candle_explmt().expect("error");
-// }
 
 pub fn run_if_cfg() {
     if_cfg::run_cfg();
@@ -173,11 +92,6 @@ pub fn run_mutable() {
 
 pub fn run_raii() {
     raii::run_box();
-}
-
-pub fn run_linked_list() {
-    linked_list::linked::run_linked();
-    linked_list::linked::run_ref();
 }
 
 pub fn run_string_slice() {
