@@ -392,6 +392,9 @@ fn main() -> Result<(), std::io::Error> {
     {
         grep_lite::run_rc();
     }
+    {
+        grep_lite::run_thread();
+    }
     Ok(())
 }
 
