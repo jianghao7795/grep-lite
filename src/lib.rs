@@ -4,12 +4,14 @@ use ring::digest::{Context, Digest, SHA256};
 use std::io::Read;
 
 mod add_two;
+mod async_await;
 mod candle;
 mod closure_fn;
 mod err_handle;
 mod expression;
 mod fmt_display;
 mod generality_feature;
+mod handle_error;
 mod if_cfg;
 mod intoiter;
 mod iterator;
@@ -24,6 +26,17 @@ mod string_slice;
 mod thread;
 mod trait_demo;
 mod tuple_string;
+
+pub fn run_async_await() {
+    async_await::async_await::run_async();
+}
+
+pub fn run_handle_error() {
+    handle_error::first_err::or_and();
+    handle_error::first_err::or_else();
+    handle_error::first_err::and_then();
+    handle_error::first_err::filter();
+}
 
 pub fn run_thread() {
     thread::signed::signed_demo();

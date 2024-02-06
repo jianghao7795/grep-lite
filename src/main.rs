@@ -395,6 +395,12 @@ fn main() -> Result<(), std::io::Error> {
     {
         grep_lite::run_thread();
     }
+    {
+        grep_lite::run_handle_error();
+    }
+    {
+        grep_lite::run_async_await();
+    }
     Ok(())
 }
 
