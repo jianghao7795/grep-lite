@@ -95,14 +95,16 @@ fn main() -> Result<(), std::io::Error> {
         .version("0.1") // 应用version
         .about("searches for patterns") // about
         .author("user") // user
-        .arg_from_usage("-p, --path=[FILE] 'Target file you want to change'") // Options
+        .arg_from_usage("-p, --path=[FILE] 'Target file you want to change'") // Options 输入错误报错
         .arg(
+            // 输入字段
             clap::Arg::with_name("pattern")
                 .help("The pattern to search for")
                 .takes_value(true)
                 .required(true),
         )
         .arg(
+            // 输入的文件名
             clap::Arg::with_name("input")
                 .help("File to search")
                 .takes_value(true)
