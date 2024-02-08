@@ -1,3 +1,5 @@
+use std::{thread, time::Duration};
+
 use futures::executor::block_on;
 
 struct Song {
@@ -13,6 +15,7 @@ async fn learn_song() -> Song {
 }
 
 async fn sing_song(song: Song) {
+    // thread::sleep(Duration::from_millis(1));
     println!(
         "给大家献上一首{}的{} ~ {}",
         song.author, song.name, "菊花残，满地伤~ ~"
@@ -20,6 +23,7 @@ async fn sing_song(song: Song) {
 }
 
 async fn dance() {
+    thread::sleep(Duration::from_millis(2500));
     println!("唱到情深处，身体不由自主的动了起来~ ~");
 }
 
