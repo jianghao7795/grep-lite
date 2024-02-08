@@ -38,4 +38,36 @@ async fn async_main() {
 
 pub fn run_async() {
     block_on(async_main());
+
+    let mut k = 9;
+    let l = k;
+    k += l;
+    println!("k is {}", k);
+    println!("l is {}", l);
+    // k += l;
+
+    // k -= l;
+
+    // k |= l;
+    let mut borrow = 10;
+
+    let deref = &mut borrow;
+    println!("{}", *deref);
+    *deref = 99;
+    // drop(deref);
+
+    println!("{}", borrow);
+    let bb = &borrow;
+    println!("{}", bb);
+    // println!("{}, {}", *deref, borrow);// 可变引用同时只能存在一个 *deref, borrow不能同时使用
+
+    let mut foo = 6;
+    let mut borrowed_foo = &foo;
+    println!("{}, {}", borrowed_foo, foo);
+    borrowed_foo = &9;
+
+    println!("{}, {}", borrowed_foo, foo);
+
+    foo = 3;
+    println!("{}, {}", borrowed_foo, foo);
 }
