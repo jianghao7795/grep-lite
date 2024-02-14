@@ -47,7 +47,7 @@ impl Drop for List {
         }
     }
 }
-
+// attribute 属性 cfg — 控制条件编译
 #[cfg(test)]
 mod test {
     use super::*;

@@ -1,3 +1,5 @@
+extern crate clap; // extern crate 链接一个外部包,或者一个宏变量(该变量定义在另外一个包中)
+
 use data_encoding::HEXUPPER;
 use grep_lite::sha256_digest;
 use grep_lite::sheet;
@@ -16,9 +18,12 @@ use std::thread as threaded;
 fn process_lines<T: BufRead + Sized>(reader: T, re: Regex) {
     for line_ in reader.lines() {
         let line = line_.unwrap();
-        match re.find(&line) {
-            Some(_) => println!("{}", line),
-            None => (),
+        // match re.find(&line) {
+        //    Some(_) => println!("{}", line),
+        //    None => (),
+        //}
+        if re.find(&line).is_some() {
+            println!("{}", line);
         }
     }
 }

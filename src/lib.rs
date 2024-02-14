@@ -2,6 +2,7 @@
 use error_chain::error_chain;
 use ring::digest::{Context, Digest, SHA256};
 use std::io::Read;
+use std::ops::Deref;
 
 mod add_two;
 mod async_await;
@@ -29,6 +30,22 @@ mod tuple_string;
 
 pub fn run_async_await() {
     async_await::async_await::run_async();
+    struct MyBox<T>(T);
+    impl<T> MyBox<T> {
+        fn new(x: T) -> MyBox<T> {
+            MyBox(x)
+        }
+    }
+    // 实现解引用
+    impl<T> Deref for MyBox<T> {
+        type Target = T;
+        fn deref(&self) -> &Self::Target {
+            &self.0
+        }
+    }
+    let y = MyBox::new(5);
+    // let x = *y;
+    assert_eq!(5, *y);
 }
 
 pub fn run_handle_error() {

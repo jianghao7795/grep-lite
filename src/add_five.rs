@@ -1,11 +1,13 @@
 pub mod add_five {
+    use std::fs::File;
+
     pub fn add_five(base: u32) -> u32 {
         base + 5
     }
 
     pub fn add_five_then() {
         println!("test");
-        let output_file = std::fs::File::open("hello1.txt").expect("file con`t open");
+        let output_file = File::open("hello1.txt").expect("file con`t open");
         println!("{:?}", output_file);
     }
 
