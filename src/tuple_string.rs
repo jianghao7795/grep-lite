@@ -4,8 +4,9 @@ pub mod tuple {
         (boolean, integer)
     }
 
-    #[derive(Debug)]
-    struct Matrix(f32, f32, f32, f32);
+    // #[derive(Debug)]
+    // #[warn(dead_code)]
+    // struct Matrix(f32, f32, f32, f32);
 
     pub fn run_reverse() {
         // 包含各种不同类型的元组
@@ -38,7 +39,7 @@ pub mod tuple {
         let (a, b, c, d) = tuple;
         println!("{:?}, {:?}, {:?}, {:?}", a, b, c, d);
 
-        let matrix = Matrix(1.1, 1.2, 2.1, 2.2);
-        println!("{:?}", matrix)
+        // let matrix = Matrix(1.1, 1.2, 2.1, 2.2);
+        // println!("{:?}", matrix)
     }
 }

@@ -449,7 +449,7 @@ fn read_username_from_file() -> Result<String, io::Error> {
 // }
 
 #[derive(Debug)]
-struct MyError(String);
+// struct MyError(String);
 // 元组结构体(Tuple Struct)
 struct Hostname(String, i32);
 
