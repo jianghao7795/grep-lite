@@ -7,7 +7,7 @@ pub mod add_five {
 
     pub fn add_five_then() {
         println!("test");
-        let output_file = File::open("hello1.txt").expect("file con`t open");
+        let output_file = File::open("hello1.txt").expect("file can`t open");
         println!("{:?}", output_file);
     }
 
