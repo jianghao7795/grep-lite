@@ -116,6 +116,7 @@ fn main() -> Result<(), std::io::Error> {
                 .required(true),
         )
         .get_matches();
+		
     println!("{:?}", args);
     let pattern = args.value_of("pattern").unwrap();
     let re = Regex::new(pattern).unwrap();
