@@ -133,7 +133,8 @@ fn main() -> Result<(), std::io::Error> {
     println!("{}", add_two::add_two::add_two(77));
     println!("{}", add_three::add_three::add_three(99));
     add_three::ten::index();
-    println!("{}", add_four::add_four::add_four(50));
+    // println!("{}", add_four::add_four::add_four(50));
+    add_four::add_four::hashmap();
     println!("{}", equal::equal_one::equal_one(4));
     println!("{}", add_five::add_five::add_five_then_equal_one(0));
 
