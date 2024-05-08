@@ -1,5 +1,6 @@
 extern crate clap; // extern crate 链接一个外部包,或者一个宏变量(该变量定义在另外一个包中)
 
+use add_five::add_five as five_user;
 use data_encoding::HEXUPPER;
 use grep_lite::sha256_digest;
 use grep_lite::sheet;
@@ -134,9 +135,15 @@ fn main() -> Result<(), std::io::Error> {
     println!("{}", add_three::add_three::add_three(99));
     add_three::ten::index();
     // println!("{}", add_four::add_four::add_four(50));
+    add_four::add_four::add_four(50);
     add_four::add_four::hashmap();
     println!("{}", equal::equal_one::equal_one(4));
     println!("{}", add_five::add_five::add_five_then_equal_one(0));
+
+    println!(
+        "------------------------------------------------------------------------five user is {}",
+        five_user::add_five_then_equal_one(9)
+    );
 
     println!("{}", add_five::add_five::add_six::add_six(55));
     println!("{}", add_five::add_five::add_six::delete_six(55));
