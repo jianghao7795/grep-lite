@@ -1,7 +1,10 @@
 pub mod add_five {
-    use std::fs::File;
+    use std::{collections::HashMap, fs::File};
 
     pub fn add_five(base: u32) -> u32 {
+        let mut hash = HashMap::new();
+        hash.insert("ab", 88);
+        println!("{:?}", hash.get("ab"));
         base + 5
     }
 
