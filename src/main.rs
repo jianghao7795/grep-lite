@@ -18,7 +18,7 @@ fn process_lines<T: BufRead + Sized>(reader: T, re: Regex) {
     }
 }
 
-fn main() -> Result<(), std::io::Error> {
+fn main() {
     let args = clap::App::new("grep") // 应用名
         .version("0.1") // 应用version
         .about("searches for patterns") // about
@@ -52,5 +52,4 @@ fn main() -> Result<(), std::io::Error> {
         let reader = BufReader::new(f);
         process_lines(reader, re)
     }
-    Ok(())
 }
