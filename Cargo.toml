@@ -8,5 +8,5 @@ edition = "2021"
 
 [dependencies]
 # candle-core = "0.3.2"
-clap = "^2"  #读取命令行输入
-regex = "^1"
+clap = {git = "https://github.com/clap-rs/clap.git", branch="v2-master"}  #读取命令行输入
+regex = {git = "https://github.com/rust-lang/regex.git", branch="master"}
